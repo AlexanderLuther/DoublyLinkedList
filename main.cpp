@@ -7,7 +7,6 @@
 
 #include <cstdlib>
 #include "DoublyLinkedList.hpp"
-#include "DoublyLinkedList.cpp"
 using namespace std;
 /*
  * 
