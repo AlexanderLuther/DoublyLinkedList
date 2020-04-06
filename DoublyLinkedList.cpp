@@ -6,13 +6,10 @@
  */
 #include "DoublyLinkedList.hpp"
 #include <iostream>
-#include "Node.hpp"
-#include "Node.cpp"
-
 /*
  Constructor de la clase.
  */
-template <typename T>
+template <class T>
 DoublyLinkedList<T>::DoublyLinkedList(){
     this->header = NULL;
     this->end = NULL;
@@ -25,7 +22,7 @@ DoublyLinkedList<T>::DoublyLinkedList(){
  *  3.Si no se encuentra vacia, establece el siguiente del nodo hacia el header, el previo del header hacia el nodo y 
  *    asigna al header la direccion del nodo creado.
  */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::addFirst(T value){
     Node<T>* node = new Node<T>(value);   
     if(this->isEmpty()){
@@ -46,7 +43,7 @@ void DoublyLinkedList<T>::addFirst(T value){
  * 3.Si no se encuentra vacia, establece el previo del nodo hacia el end, el siguiente del end hacia el nodo y 
  *    asigna al end la direccion del nodo creado.
  */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::addLast(T value){
     Node<T>* node = new Node<T>(value);   
     if(this->isEmpty()){
@@ -73,7 +70,7 @@ void DoublyLinkedList<T>::addLast(T value){
  * 7. Se estabelce el siguiente del nuevo nodo al nodo actual.
  * 8. Se establece el previo del nodo actual al nodo nuevo.
  */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::add(int index, T value){
     if(index == this->size()){
         this->addLast(value);
@@ -108,7 +105,7 @@ void DoublyLinkedList<T>::add(int index, T value){
  * Metodo encargado de devolver el valor del nodo al frente de la lista.
  * Retorna el valor almacenado dentro del nodo referenciado por el header. 
 */
-template <typename T>
+template <class T>
 T DoublyLinkedList<T>::getFirst(){
     if(!this->isEmptyList()){
         return this->header->getValue();
@@ -120,7 +117,7 @@ T DoublyLinkedList<T>::getFirst(){
  * Metodo encargado de devolver el valor del nodo al final de la lista.
  * Retorna el valor almacenado dentro del nodo referenciado por el end. 
 */
-template <typename T>
+template <class T>
 T DoublyLinkedList<T>::getLast(){
     if(!this->isEmptyList()){
         return this->end->getValue();
@@ -135,7 +132,7 @@ T DoublyLinkedList<T>::getLast(){
  * valor contenido del nodo actual, de lo contrario se avanza al siguiente nodo y se incrementa en 1 el valor
  * del indice actual.
 */
-template <typename T>
+template <class T>
 T DoublyLinkedList<T>::get(int index){
     if(!this->isEmptyList()){
         if(!this->isArrayOutOfBounds(index)){
@@ -158,7 +155,7 @@ T DoublyLinkedList<T>::get(int index){
  * index de lo contrario se avanza al siguiente nodo y se incrementa en 1 el valor de index. Si no se 
  * encuentra ningun nodo con el valor buscado se retorna -1. 
 */
-template <typename T>
+template <class T>
 int DoublyLinkedList<T>::indexOf(T value){
     if(!this->isEmptyList()){
         int index = 0;
@@ -180,7 +177,7 @@ int DoublyLinkedList<T>::indexOf(T value){
  *  4.De lo contrario se establece el header hacia el siguiente del nodo actual  y el previo del nodo siguiente a NULL.
  *  5.Finalmente se elimina el nodo actual.  
  */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::removeFirst(){
     if(!this->isEmptyList()){
         Node<T>* node = this->header;
@@ -204,7 +201,7 @@ void DoublyLinkedList<T>::removeFirst(){
  *  4.De lo contrario se establece el end hacia el previo del nodo actual  y el siguente del nodo previo a NULL.
  *  5.Finalmente se elimina el nodo actual.  
  */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::removeLast(){
     if(!this->isEmptyList()){
         Node<T>* node = this->end;
@@ -226,7 +223,7 @@ void DoublyLinkedList<T>::removeLast(){
  * lista desde el header validando si el indice actual corresponde al indice del nodo que se desea eliminar,
  * si es asi llama la metodo remove() enviandole como parametro el nodo actual.
 */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::removeIndex(int index){
     if(!this->isEmptyList()){
         if(!this->isArrayOutOfBounds(index)){
@@ -247,7 +244,7 @@ void DoublyLinkedList<T>::removeIndex(int index){
  * Valida que la lista no se encuentre vacia. Recorre la lista desde el header validando si el valor del nodo 
  * actual es igual al valor del parametro recibido, si es asi llama la metodo remove() enviandole como parametro el nodo actual.
 */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::removeValue(T value){
     if(!this->isEmptyList()){
         for(Node<T>* node = this->header; node != NULL; node = node->getNext()){
@@ -263,7 +260,7 @@ void DoublyLinkedList<T>::removeValue(T value){
  * Metodo encargado de determinar si la lista se encuentra vacia.
  * Valida si el header y el end apuntan hacia NULL y devuelve el valor booleano obtenido de esa comparacion. 
 */
-template <typename T>
+template <class T>
 bool DoublyLinkedList<T>::isEmpty(){
     return this->header == NULL && end == NULL;
 }
@@ -272,7 +269,7 @@ bool DoublyLinkedList<T>::isEmpty(){
  * Metodo encargado de eliminar todos los nodos de la lista.
  * Llama al metodo removeFirst() para eliminar cada uno de los nodos de la lista uno por uno.
 */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::clear(){
     if(!this->isEmpty()){
         int length = this->size();
@@ -287,7 +284,7 @@ void DoublyLinkedList<T>::clear(){
  * Recorre todos los nodos de la lista desde el nodo header hasta el nodo end, con cada nodo que nodo que 
  * avanza incrementa 1 al contrador size. Por ultimo retorna el valor contenido dentro de size. 
 */
-template<typename T>
+template<class T>
 int DoublyLinkedList<T>::size(){
     if(this->isEmpty()){
         return 0;
@@ -305,7 +302,7 @@ int DoublyLinkedList<T>::size(){
  * Metodo encargado de validar si la lista se encuentra vacia. De ser asi lanza una excepcion.
  * De lo contrario devuelve un valor false;
  */
-template <typename T>
+template <class T>
 bool DoublyLinkedList<T>::isEmptyList(){
     if(this->isEmpty()){
         std::string msg = "La lista se encuentra vacia";
@@ -318,7 +315,7 @@ bool DoublyLinkedList<T>::isEmptyList(){
  * Metodo encargado de validar si el indice se encuentra dentro de los limites. De no ser asi lanza una excepcion.
  * De lo contrario devuelve un valor false;
  */
-template <typename T>
+template <class T>
 bool DoublyLinkedList<T>::isArrayOutOfBounds(int index){
     if(index >= this->size() || index < 0){
         std::string msg = "El indice se encuentra fuera de los limites";
@@ -334,7 +331,7 @@ bool DoublyLinkedList<T>::isArrayOutOfBounds(int index){
  * 3. De lo contrario se establece el siguiente del nodo previo al siguiente del nodo a eliminar.
  *    y el previo del nodo siguiente al previo del nodo a eliminar y se elimina el nodo.
  */
-template <typename T>
+template <class T>
 void DoublyLinkedList<T>::remove(Node<T>* node){
     if(node == this->header){
         this->removeFirst();
