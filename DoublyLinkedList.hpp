@@ -35,5 +35,6 @@ class DoublyLinkedList {
         bool isArrayOutOfBounds(int index);
         void remove(Node<T>* node);
 };
+#include "DoublyLinkedList.hpp"
 #endif /* DOUBLYLINKEDLIST_HPP */
 
