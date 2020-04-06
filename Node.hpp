@@ -25,5 +25,6 @@ class Node{
             Node<T>* getPrevious();
             Node<T>* getNext();   
 };
+#include "Node.cpp"
 #endif /* NODE_HPP */
 
